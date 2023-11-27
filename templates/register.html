@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Halaman Daftar</title>
+{% endblock %}
+
+{% block body %}
+<section class="auth_container">
+      <!-- when there is an error, display the error -->
+      {% if error %}
+      <div class="flash_card flash_text">
+            {{ error }}
+      </div>
+      {% endif %}
+      <div class="form_wrap">
+            <div class="img_wrap">
+                  <img src="/static/svg/background.svg" alt="Background Image" loading="lazy">
+            </div>
+            <div class="form_content">
+                  <h1 class="auth_title">Daftar</h1>
+
+                  <form action="/auth/register" method="post" class="auth_form">
+                        <div class="form_group">
+                              <label for="email">Alamat Email</label>
+                              <input type="email" name="email" id="email" class="form_input" placeholder="Masukkan email" required>
+                        </div>
+
+                        <div class="form_group">
+                              <label for="username">Nama Pengguna</label>
+                              <input type="text" name="username" id="username" class="form_input" placeholder="Masukkan username" required>
+                        </div>
+
+                        <div class="form_group">
+                              <label for="password">Kata Sandi</label>
+                              <input type="password" name="password" id="password" class="form_input" placeholder="Masukkan password" required>
+                        </div>
+
+                        <input class="form_btn" id="form_btn" type="submit" value="Masuk">
+                  </form>
+
+                  <p class="auth_link">Sudah memiliki akun? <a href="/auth/login">Masuk</a></p>
+            </div>
+      </div>
+</section>
+{% endblock %}

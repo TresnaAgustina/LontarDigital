@@ -1,0 +1,16 @@
+.flash_card {
+  position: absolute;
+  top: 2rem;
+  width: auto;
+  height: auto;
+  padding: 2rem 4rem;
+  background: rgb(216, 43, 43);
+  border-radius: 10px;
+  z-index: 100;
+}
+
+.flash_text {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+}

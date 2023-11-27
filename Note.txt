@@ -1,0 +1,10 @@
+TGL = 23 september 2023
+
+proses perbandingan kata:
+    1. looping kata hasil tokenizing
+    2. looping kata database
+    3. di dalam looping, panggil jaro winkler
+
+proses auto spelling
+    1. gunakan onKeyUp/onChange javascript / Ajax
+    2. ketika di trigger panggil fungction di flask dan tampilkan hasil di form

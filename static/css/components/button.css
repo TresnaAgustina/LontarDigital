@@ -1,0 +1,228 @@
+/* =====*===== Navbar Toggle =====*===== */
+.nav_toggle {
+  width: auto;
+  height: auto;
+  background: none;
+  outline: none;
+  stroke: none;
+  border: none;
+  cursor: pointer;
+  display: inherit;
+  border: 0.5px solid transparent;
+  padding: 0.6rem;
+}
+
+.nav_toggle:hover {
+  border: 0.5px solid #fc8d45;
+  border-radius: 5px;
+  stroke: #fc8d45;
+}
+
+.nav_toggle:hover > img {
+  stroke: #fc8d45;
+}
+
+.toggle_icon {
+  margin: 0;
+}
+
+/* =====*===== Button Form =====*===== */
+#form_btn {
+  width: 100%;
+  height: auto;
+  background-color: #fc8d45;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  padding: 0.6rem 0;
+  border-radius: 5px;
+  margin-top: 1.2rem;
+  cursor: pointer;
+}
+
+/* =====*===== Special Character Button =====*===== */
+.single_btn {
+  width: 4rem;
+  height: 4rem;
+  text-align: center;
+  font-size: 1.1rem;
+  background: #fff;
+  border: 0.5px solid #1a1a1a;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all ease-in-out 0.15s;
+}
+
+.single_btn:hover {
+  border: transparent;
+  background-color: #fc8d45;
+  color: #ffff;
+}
+
+/* =====*===== Translate Button =====*===== */
+.btn_translate {
+  width: auto;
+  height: auto;
+  padding: 1rem 1.5rem;
+  border-radius: 5px;
+  border: none;
+  background-color: #fc8d45;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  border: 0.5px solid transparent;
+  transition: all ease-in-out 0.15s;
+}
+
+.btn_translate:hover {
+  border: 0.5px solid #ff6600;
+  background-color: #ff6600;
+}
+
+/* =====*===== Button  Download & Copy =====*===== */
+.main_action_btn {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  background: #1a1a1a;
+  border: 0.5px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all ease-in-out 0.15s;
+}
+
+.main_action_btn:hover {
+  background: #fc8d45;
+}
+
+.btn_icon {
+  margin: auto;
+}
+
+/* =====*===== Logout Button =====*===== */
+.logout_btn {
+  width: 100%;
+  height: auto;
+  padding: 0.5rem 1rem;
+  background: #fc8d45;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+  transition: all ease-in-out 0.15s;
+}
+
+.logout_btn:hover {
+  background: red;
+}
+
+.divide_line {
+  width: 100%;
+  height: 0.5px;
+  color: #acacae;
+  margin: 0.4rem 0;
+}
+
+/* =====*===== Add Word Button =====*===== */
+.add_btn {
+  width: auto;
+  height: auto;
+  padding: 0.8rem 0.6rem;
+  background-color: #1a1a1a;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #fff;
+  transition: 0.2s ease-in-out;
+}
+
+.add_btn:hover {
+  background-color: #242424;
+  color: #fc8d45;
+}
+/* =====*===== Edit Word Button =====*===== */
+.edit_btn {
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0.4rem 0.5rem 0.6rem 0.6rem;
+  background-color: #0783ff;
+  border-radius: 5px;
+  transition: 0.2s ease-in-out;
+}
+
+.edit_btn > img {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.edit_btn:hover {
+  background-color: #0066ff;
+}
+/* =====*===== Delete Word Button =====*===== */
+.delete_btn {
+  width: 2.2rem;
+  height: 2.2rem;
+  background-color: #f83434;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete_btn > img {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.delete_btn:hover {
+  background-color: #f50000;
+}
+
+/* =====*===== Action Form Button =====*===== */
+.action_btn {
+  width: 100%;
+  height: auto;
+  padding: 0.8rem 0;
+  background-color: #fc8d45;
+  border-radius: 5px;
+  color: #fff;
+  transition: 0.2s ease-in-out;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  border: none;
+}
+
+/* =====*===== Pagination Button =====*===== */
+.pagination {
+  width: 80%;
+  margin: 0 auto 2rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navigation_btn {
+  width: auto;
+  height: auto;
+  padding: 0.5rem;
+  background: #1a1a1a;
+  color: #fff;
+  border-radius: 5px;
+}

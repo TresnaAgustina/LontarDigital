@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Daftar Kata</title>
+{% endblock %}
+
+{% block body %}
+<section class="list_container">
+      <!-- background img -->
+      <div class="list_bg_image">
+            <img src="/static/svg/background.svg" alt="Background Image" class="bg">
+      </div>
+      <!-- navbar -->
+      {% include 'navbar.html' %}
+
+      <!-- list page - header -->
+      <div class="header_wrap">
+            <h1 class="title">Daftar Kata Khusus</h1>
+
+            <!-- right content -->
+            <div class="header_content_group">
+                  <form action="/search" method="get" class="search_box">
+                        <input type="text" name="search" id="search_input" class="search_input" placeholder="cari kata">
+                        <button type="submit" class="search_btn"><img src="/static/svg/search.svg" alt="search icon"></button>
+                  </form>
+
+                  <a href="/add" class="add_btn">Tambah Kata <img src="/static/svg/add.svg" alt="add icon"></a>
+            </div>
+      </div>
+
+      <!-- list page - word list container -->
+      <div class="word_list_container">
+            <div class="list_wrapping">
+                  <!-- word mapping -->
+                  {% for word in words %}
+                  <!-- single content -->
+                  <div class="single_list">
+                        <div class="list_data_group">
+                              <p>{{ word.id }}</p>
+                              <p>{{ word.kata }}</p>
+                              <p>{{ word.arti }}</p>
+                              <p>{{ word.format_aksara }}</p>
+                        </div>
+
+                        <div class="list_action_group">
+                              <a href="/edit/{{ word.id }}" class="edit_btn"><img src="/static/svg/edit.svg" alt="edit logo"></a>
+                              <a href="/delete/{{ word.id }}" class="delete_btn"><img src="/static/svg/trash.svg" alt="trash logo"></a>
+                        </div>
+                  </div>
+                  <!-- end single content -->
+                  {% endfor %}
+                  <!-- end word mapping -->
+            </div>
+
+      </div>
+
+
+      <!-- pagination -->
+      <div class="pagination">
+            {% if words.has_prev %}
+            <a class="navigation_btn" href="?page={{ current_page - 1 }}">Previous</a>
+            {% endif %}
+            {% for num in words.iter_pages() %}
+            {% if num %}
+            {% if num != current_page %}
+            <a href="?page={{ num }}">{{ num }}</a>
+            {% else %}
+            <span class="current">{{ num }}</span>
+            {% endif %}
+            {% else %}
+            <span class="ellipsis">...</span>
+            {% endif %}
+            {% endfor %}
+            {% if words.has_next %}
+            <a class="navigation_btn" href="?page={{ current_page + 1 }}">Next</a>
+            {% endif %}
+      </div>
+      <!-- end pagination -->
+</section>
+{% endblock %}

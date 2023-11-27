@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>History Translate</title>
+{% endblock %}
+
+{% block body %}
+{% include 'navbar.html' %}
+<section class="history_container">
+    <!-- background img -->
+    <div class="list_bg_image">
+        <img src="/static/svg/background.svg" alt="Background Image" class="bg">
+    </div>
+    <div class="history_wrapper">
+        <div class="list_wrapper">
+            <div class="list">
+                <div class="content_wrap">
+                    <p>No</p>
+                    <p>Tanggal</p>
+                </div>
+
+                <div class="button_wrap">
+                    <p>Action</p>
+                </div>
+            </div>
+            {% for history in history %}
+            <div class="list">
+                <div class="content_wrap">
+                    <p>{{ history.id }}</p>
+                    <p>{{ history.created_at }}</p>
+                </div>
+
+                <!-- button -->
+                <div class="button_wrap">
+                    <a href="/history/{{ history.id }}" class="detail edit_btn"><img src="/static/svg/edit.svg" alt="edit logo"></a>
+                    <a href="/history/delete/{{ history.id }}" class="detai delete_btn"><img src="/static/svg/trash.svg" alt="trash logo"></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

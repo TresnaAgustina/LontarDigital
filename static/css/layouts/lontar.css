@@ -1,0 +1,32 @@
+.lontar_template {
+  width: 100%;
+  height: 10rem;
+  overflow: hidden;
+  border: 1px solid red;
+}
+
+.bg_wrap {
+  position: relative;
+  width: 80%;
+  margin: auto;
+  border: 1px solid blue;
+  background-repeat: repeat-y;
+}
+
+img {
+  position: absolute;
+  width: 100%;
+  object-fit: contain;
+  z-index: 10;
+}
+
+.content {
+  position: relative;
+  width: 73%;
+  margin: auto;
+  font-family: "bali simbar";
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  text-align: left;
+  z-index: 100;
+}

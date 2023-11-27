@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+<!-- Block Head -->
+{% block head %}
+<title>Halaman Utama</title>
+{% endblock %}
+
+<!-- Block Body -->
+{% block body %}
+<section class="home_container">
+    <!-- background img -->
+    <div class="bg_image">
+        <img src="/static/svg/background.svg" alt="Background Image" class="bg">
+    </div>
+
+    {% include 'navbar.html' %}
+
+    <div class="home_content_wrap">
+        <!-- main form input -->
+        <div class="home_form_wrap">
+            <form action="/translate" method="post" class="main_form">
+                <div class="main_field_group">
+                    <div class="text_input_field main_field">
+                        <textarea class="latin_input field_box" name="kata_latin" placeholder="Masukan teks latin" id="latin_input" required>{{ history.teks_asli }}</textarea>
+                    </div>
+
+                    <!-- button -->
+                    <div class="main_form_btn_group">
+                        <button class="btn_translate" type="submit" disabled>Translate
+                            <img src="/static/svg/translate.svg" alt="">
+                        </button>
+
+                        <div class="main_btn_group">
+                            <!-- <div class="btn_copy main_action_btn" onclick="copy()">
+                                                <img src="/static/svg/copy.svg" alt="Copy Icon" class="copy_icon btn_icon">
+                                          </div> -->
+                            <div class="download_popup" id="download_popup">
+                                <div class="grup">
+                                    <a href="/pdf/{{ history.id }}" class="pdfDownload">Format Buku</a>
+                                    <a href="/lontar/{{ history.id }}" class="pdfDownload">Format Lontar</a>
+                                </div>
+                            </div>
+
+                            <div class="btn_download main_action_btn" onclick="donwload()">
+                                <img src="/static/svg/download.svg" alt="Download Icon" class="download_icon btn_icon">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- text result -->
+                    <div class="">
+                        <h1>Hasil Translate</h1>
+                        <div class="text_result_field main_field">
+                            <!-- check if hasil -->
+                            <p class="result_text field_box" id="result_text">{{ history.teks_hasil }}</p>
+                            <!-- <textarea name="result_text" cols="30" rows="10" class="result_text field_box" id="result_text" disabled>{{ hasil }}</textarea> -->
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</section>
+{% endblock %}

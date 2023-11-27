@@ -1,0 +1,56 @@
+.navbar_container {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.nav_content_wrap {
+  position: relative;
+  margin: auto;
+  width: 80%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 0;
+}
+
+/* popup style */
+.popup {
+  display: none;
+  position: absolute;
+  top: 5.5rem;
+  right: 0;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: all ease-in-out 0.3s;
+}
+
+.active {
+  display: block;
+  transition: all ease-in-out 0.3s;
+}
+
+.popup_content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  text-align: center;
+}
+
+.popup_link {
+  width: auto;
+  height: auto;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.popup_link:hover {
+  background: rgb(247, 247, 247);
+}

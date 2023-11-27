@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Edit Kata</title>
+{% endblock %}
+
+{% block body %}
+<section class="action_form_container">
+      <div class="action_form_wrap">
+            <div class="action_img_wrap">
+                  <img src="/static/svg/background.svg" alt="Background Image" loading="lazy">
+            </div>
+
+            <form action="/update/{{ words.id }}" method="post" class="action_form">
+                  <div class="action_form_title">
+                        <h1 class="title">Edit Kata Khusus</h1>
+                  </div>
+                  <div class="action_content_group">
+                        <div class="action_field_group form_group">
+                              <label for="kata_latin" class="label_field">Kata Latin</label>
+                              <input type="text" name="kata_latin" id="kata latin" class="input_field" placeholder="{{ words.kata }}">
+                        </div>
+                        <div class="action_field_group form_group">
+                              <label for="bentuk_aksara" class="label_field">Kata Format Aksara</label>
+                              <input type="text" name="bentuk_aksara" id="kata latin" class="input_field" placeholder="{{ words.format_aksara }}">
+                        </div>
+                  </div>
+
+                  <div class="action_field_group form_group">
+                        <label for="arti_kata" class="label_field">Arti Kata</b></label>
+                        <input type="text" name="arti_kata" id="kata latin" class="input_field" placeholder="{{ words.arti }}">
+                  </div>
+
+                  <button type="submit" class="action_btn">Simpan</button>
+            </form>
+      </div>
+</section>
+{% endblock %}

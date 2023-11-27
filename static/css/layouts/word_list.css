@@ -1,0 +1,45 @@
+/* list page - container */
+.list_container {
+  width: 100%;
+  height: auto;
+}
+
+.list_bg_image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: contain;
+  z-index: -1;
+}
+
+/* list page - header */
+.header_wrap {
+  width: 80%;
+  height: auto;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header_content_group {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+/* list page - word list container */
+.word_list_container::-webkit-scrollbar {
+  display: none;
+}
+.word_list_container {
+  width: 80%;
+  height: 80%;
+  margin: 1.5rem auto;
+}
+
+.list_wrapping {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem 1rem;
+}
