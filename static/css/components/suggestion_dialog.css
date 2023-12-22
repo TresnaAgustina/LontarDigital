@@ -1,0 +1,11 @@
+.suggestList {
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight {
+  color: red;
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 0.4rem 0.6rem;
+  border-radius: 2px;
+}

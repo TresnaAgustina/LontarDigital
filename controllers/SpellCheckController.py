@@ -14,6 +14,7 @@ def spell_check():
     data = request.get_json()
     kata_latin = data['kata_latin']
 
+    # get kata khusus
     daftar = KataKhusus.query.all()
     hasil_terjemahan = []
     kata_latin = tokenisasi(kata_latin)
@@ -51,17 +52,3 @@ def spell_check():
 def tokenisasi(text):
     text_tokenize = text.split()  # memecah teks menjadi kata-kata
     return text_tokenize
-
-@spell_check_blueprint.route('/show_suggestions', methods=['POST'])
-def show_suggestions():
-    selected_word = request.form['selected_word']
-    selected_suggestion = request.form['selected_suggestion']
-
-    # Lakukan penggantian kata pada teks dengan kata yang dipilih
-    text = session.get('result_text', '')
-    text = text.replace(selected_word, selected_suggestion)
-
-    # Simpan kembali teks yang telah diperbarui ke dalam session
-    session['result_text'] = text
-
-    return render_template('index.html', suggestions_json={'selected_word': selected_word, 'selected_suggestion': selected_suggestion})

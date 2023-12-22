@@ -1,17 +1,22 @@
 from flask import Blueprint, send_file, session
-import pdfkit
+from datetime import datetime
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
-# Import library untuk mengatur jenis font yang berbeda
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
+
 export_pdf_blueprint = Blueprint('export_pdf', __name__)
 
 # Fungsi untuk menghasilkan file PDF
 def create_pdf(str):
+    title = session.get('title','')
+    # Get the current time
+    now = datetime.now()
+    # Format the time
+    current_date = now.strftime("%d-%m-%Y")
     # Buat dokumen PDF
-    doc = SimpleDocTemplate("example.pdf", pagesize=letter)
+    doc = SimpleDocTemplate(title+"_"+current_date+".pdf", pagesize=letter)
     elements = []
     # Mendefinisikan jenis font "Bali Simbar"
     pdfmetrics.registerFont(TTFont("BaliSimbar", "static/font/balisdn.ttf"))
@@ -35,13 +40,22 @@ def create_pdf(str):
 # Route untuk eksport PDF
 @export_pdf_blueprint.route('/pdf', methods=['GET'])
 def export_pdf():
-    # ambil data history dengan id 1
+    # Get the current time
+    now = datetime.now()
+    # Format the time
+    current_date = now.strftime("%d-%m-%Y")
     # Retrieve the translated text from the session
     teks_result = session.get('result_text', '')
+    title = session.get('title','')
+    # data = request.get_json()
+    # teks_result = data['data']
+
+    print('Teks Result: '+ teks_result)
 
     # Check if there's content to generate a PDF
     if not teks_result:
         return "No content to export to PDF"
 
     create_pdf(teks_result)
-    return send_file("example.pdf", as_attachment=True)
+
+    return send_file(title+"_"+current_date+".pdf", as_attachment=True)

@@ -226,3 +226,37 @@
   color: #fff;
   border-radius: 5px;
 }
+
+/* =====*===== Download Button New =====*===== */
+.btn_downloads {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  background-color: #1a1a1a;
+  color: #ffff;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+  stroke: none;
+  border: none;
+  animation-duration: 400ms;
+}
+
+.btn_downloads:hover {
+  background-color: #fc8d45;
+  border: none;
+}
+
+/* =====*===== Translate Button =====*===== */
+.translate_btn {
+  background-color: #363636;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}

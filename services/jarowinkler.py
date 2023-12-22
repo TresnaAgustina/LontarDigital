@@ -1,4 +1,4 @@
-class JaroWinkler:
+class   JaroWinkler:
     def __init__(self, threshold=0.9):
         self.threshold = threshold
 

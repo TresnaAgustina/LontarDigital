@@ -7,18 +7,13 @@
 
 <!-- Block Body -->
 {% block body %}
-<style>
-      .suggestList {
-            display: flex;
-            flex-direction: column;
-      }
-</style>
 <section class="home_container">
       <!-- Dialog untuk menampilkan pilihan kata yang mirip -->
       <div id="suggestionDialog" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; padding: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)">
-            <p>Pilih kata yang mirip:</p>
-            <div id="suggestionButtons" style="display: flex; flex-direction: column; gap: 0.5rem"></div>
-            <button id="skipButton" onclick="skipWord()">Skip</button>
+            <p style="text-align: center; font-weight: bold; margin-bottom: 1rem;">Suggestion List</p>
+            <p style="margin-bottom: 1rem;" id="all"></p>
+            <div id="suggestionButtons" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem;"></div>
+            <button id="skipButton" onclick="skipWord()" style="width: 100%;  margin: 1rem 0 1rem 0; padding: .4rem 0; font-weight: bold;">Skip</button>
       </div>
       <!-- background img -->
       <div class="bg_image">
@@ -31,23 +26,28 @@
             <!-- special character button -->
             <!-- hiraukan -->
             <div class="button_box">
+                  <!--- pepet -->
                   <button class="single_btn" onclick="add('é')">é</button>
+                  <!--- A kara -->
                   <button class="single_btn" onclick="add('ā')">ā</button>
+                  <!--- I kara -->
                   <button class="single_btn" onclick="add('ī')">ī</button>
-                  <button class="single_btn" onclick="add('ū')">ū</button>
-                  <button class="single_btn" onclick="add('Ō')">Ō</button>
+                  <!--- U kara -->
+                  <button class="single_btn" onclick="add('ú')">ū</button>
+                  <!--- O kara -->
+                  <button class="single_btn" onclick="add('ô')">ô</button>
                   <button class="single_btn" onclick="add('ḍ')">ḍ</button>
                   <button class="single_btn" onclick="add('ḷ')">ḷ</button>
                   <button class="single_btn" onclick="add('ḹ')">ḹ</button>
                   <button class="single_btn" onclick="add('ṁ')">ṁ</button>
                   <button class="single_btn" onclick="add('ṃ')">ṃ</button>
-                  <button class="single_btn" onclick="add('ṇ')">ṇ</button>
+                  <button class="single_btn" onclick="add('ñ')">ñ</button><!-- na rambat -->
                   <button class="single_btn" onclick="add('ṝ')">ṝ</button>
                   <button class="single_btn" onclick="add('ś')">ś</button>
                   <button class="single_btn" onclick="add('ṣ')">ṣ</button>
                   <button class="single_btn" onclick="add('ṭ')">ṭ</button>
-                  <button class="single_btn" onclick="add('||')">||</button>
-                  <button class="single_btn" onclick="add('|||')">|||</button>
+                  <button class="single_btn" onclick="add('<')">||</button>
+                  <button class="single_btn" onclick="add('>')">|||</button>
                   <button class="single_btn" onclick="add('○')">○</button>
                   <button class="single_btn" onclick="add('þ')">Oṁ</button>
                   <button class="single_btn" onclick="add('ý')">Oṅg</button>
@@ -58,6 +58,8 @@
                   <form action="/translate" method="post" class="main_form">
                         <div class="main_field_group">
                               <!-- field teks asli -->
+                              <!-- title input -->
+                              <input class="title_input" type="text" name="title" id="title" placeholder="Masukan Judul" value="{{ judul }}">
                               <div class="text_input_field main_field">
                                     <!-- field tempat input teks latin -->
                                     <textarea class="latin_input field_box" name="kata_latin" placeholder="Masukan teks latin" id="latin_input" required>{{ kata_latin }}</textarea>
@@ -71,7 +73,7 @@
                                     </button>
 
                                     <!-- edit btn ini: button untuk spelling checker -->
-                                    <button type="button" onclick="checkSpelling()">Check Spelling</button>
+                                    <button class="translate_btn" type="button" onclick="checkSpelling()">Check Spelling</button>
 
 
                                     <!-- button group -->
@@ -80,19 +82,23 @@
                                           <div class="download_popup" id="download_popup">
                                                 <div class="grup">
                                                       <a href="/pdf" class="pdfDownload">Format Buku</a>
-                                                      <a href="/lontar" class="pdfDownload">Format Lontar</a>
+                                                      <!-- <button class="book_format" onclick="bookFormat()">Format Buku</button> -->
+                                                      <a href="/lontar" class="pdfDownload">Format Lontar (.pdf)</a>
+                                                      <a href="/test_lontar" class="pdfDownload">Format Lontar (.docx)</a>
                                                 </div>
                                           </div>
+
                                           <!-- download btn -->
-                                          <div class="btn_download main_action_btn" onclick="donwload()">
+                                          <button type="button" class="btn_downloads" onclick="donwload()">Download<img src="/static/svg/download.svg"></button>
+                                          <!-- <div class="btn_download main_action_btn" onclick="donwload()">
                                                 <img src="/static/svg/download.svg" alt="Download Icon" class="download_icon btn_icon">
-                                          </div>
+                                          </div> -->
                                     </div>
                               </div>
 
                               <!-- text result -->
                               <div class="">
-                                    <h1>Hasil Translate</h1>
+                                    <h5>Hasil Translate</h5>
                                     <div class="text_result_field main_field">
                                           <!-- check if hasil -->
                                           <p class="result_text field_box" id="result_text">{{ hasil }}</p>
@@ -107,8 +113,23 @@
 </section>
 
 <script>
+      async function bookFormat() {
+            const teks = document.getElementById('result_text').value;
+            const title = document.getElementById('title').value;
+
+            const response = await fetch('/pdf', {
+                  method: 'POST',
+                  headers: {
+                        'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({ data: teks }),
+            });
+      }
+
       let currentIndex = 0;
       let inputText;
+      let suggestionsList = [];
+
       async function checkSpelling() {
             const teks = document.getElementById('latin_input').value;
             inputText = document.getElementById('latin_input').value.split(' ');
@@ -124,91 +145,109 @@
             const data = await response.json();
             const { suggestions, trans_result } = data;
 
-            // looping isi suggestions
-            let suggest = [];
-            for (let i = 0; i < suggestions.length; i++) {
-                  suggest.push({
-                        "target": suggestions[i][0],
-                        "suggestion": suggestions[i][1],
-                        "meaning": suggestions[i][2],
-                        "format": suggestions[i][3],
-                  });
-            }
+            suggestionsList = [...suggestions]
 
+            check()
+      }
+
+      function check() {
+            const teks = document.getElementById('latin_input').value;
+            inputText = document.getElementById('latin_input').value.split(' ');
+
+            // get suggestions from global variable
+            suggestions = suggestionsList
+
+            // testing purpose
+            // console.log(inputText[currentIndex]);
+
+            // jika masih ada kata yang belum dicek
             if (currentIndex < inputText.length) {
+
+                  // ambil kata yang akan dicek
                   const kataInput = inputText[currentIndex];
 
+                  // temukan kata yang mirip dari suggest dengan kata inputan
+                  const suggest = suggestions.filter(suggestion => suggestion[0] === kataInput);
+                  // const suggest = suggestions.find(suggestion => suggestion[0] === kataInput);
+
+                  // jika ada kata yang mirip
                   if (suggest.length > 0) {
-                        let target = suggest[currentIndex].target;
-                        const similar = suggest.filter(suggest => target === kataInput);
-                        if (similar) {
-                              // console.log(suggest)
-                              showSuggestionDialog(suggestions);
-                              document.getElementById('latin_input').value = trans_result;
-                        }
+                        showSuggestionDialog(suggest, teks);
                   } else {
                         currentIndex++;
-                        checkSpelling();
+                        check();
                   }
 
             } else {
-                  // console.log('current index 1: ' + currentIndex);
+                  // console.log(inputText);
                   alert("selesai");
             }
-
-            // console.log('input teks: ' + inputText);
-            // console.log('suggest length: ' + suggest.length);
-            // console.log('input text length: ' + inputText.length);
-            // console.log('target: ' + suggest.target[0]);
-            // console.log('current:  ' + inputText[currentIndex]);
-            // console.log('current index luar: ' + currentIndex);
-
-
-            // if (suggest.target == currentInput) {
-            //       console.log(suggest)
-            //       showSuggestionDialog(suggestions);
-            //       document.getElementById('latin_input').value = trans_result;
-            // } else {
-            //       currentIndex++;
-            //       checkSpelling();
-            // }
-
-            // temukan kata yang mirip dari suggest dengan kata inputan
-            // showSuggestionDialog(suggestions);
       }
 
-
-      function showSuggestionDialog(suggestions) {
+      function showSuggestionDialog(suggestions, teksAll) {
             const suggestionDialog = document.getElementById('suggestionDialog');
             const suggestionButtons = document.getElementById('suggestionButtons');
+            const allInputan = document.getElementById('all');
 
             // Hapus isi sebelumnya dari dialog
             suggestionButtons.innerHTML = '';
 
+            // display kata target
+            // const kataTarget = document.getElementById('target');
+            // kataTarget.innerHTML = `Kata Target: ${suggestions[0][0]}`;
+
+            // ambil semua teks inputan [berikan higlight pada kata disini]
+            const words = teksAll.split(' ');
+
+            allInputan.innerHTML = words
+                  .map((word, index) => {
+                        if (index === currentIndex) {
+                              // Kata target di-highlight
+                              return `<span class="highlight">${word}</span>`;
+                        }
+                        return word;
+                  })
+                  .join(' ');
+
+            // display kata target
+            // targetElement.innerHTML = `Kata Target: <span class="highlight">${suggestions[0][0]}</span>`;
+
             // Tambahkan tombol untuk setiap pilihan kata yang mirip
             suggestions.forEach(suggestion => {
                   const suggestionButton = document.createElement('button', { class: 'suggestList' });
-                  //looping untuk menampilkan kata dan arti dari suggest // Memperbarui untuk menggunakan indeks yang benar
                   suggestionButton.innerHTML = `${suggestion[1]} (${suggestion[2]})`;
+
+                  console.log(suggestion)
 
                   suggestionButton.addEventListener('click', () => {
                         replaceWithSuggestion(suggestion[0], suggestion[3]);
                         suggestionDialog.style.display = 'none';
                         currentIndex++;
-                        setTimeout(checkSpelling, 100); // Lanjutkan ke kata berikutnya setelah beberapa saat
+                        setTimeout(check, 100); // Lanjutkan ke kata berikutnya setelah beberapa saat
                   });
                   suggestionButtons.appendChild(suggestionButton);
             });
 
+            // Tambahkan event listener untuk tombol Skip
+            const skipButton = document.getElementById('skipButton');
+            skipButton.addEventListener('click', () => {
+                  suggestionDialog.style.display = 'none';
+                  currentIndex++;
+                  setTimeout(() => {
+                        check(); // Lanjutkan ke kata berikutnya setelah beberapa saat
+                  }, 100);
+            });
+
+
             suggestionDialog.style.display = 'block';
       }
 
-
       function replaceWithSuggestion(selectedWord, selectedSuggestion) {
-            const inputText = document.getElementById('latin_input');
-            const currentText = inputText.value;
+            const inputTexts = document.getElementById('latin_input');
+            const currentText = inputTexts.value;
+            console.log('test: ' + inputText)
             const newText = currentText.replace(selectedWord, selectedSuggestion);
-            inputText.value = newText;
+            inputTexts.value = newText;
       }
 
       function skipWord() {

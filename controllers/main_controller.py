@@ -84,6 +84,10 @@ def load_user(user_id):
 @main_controller.route('/translate', methods=['POST'])
 @login_required
 def translate():
+      # get full title from form
+      title = request.form.get('title','')
+
+      # title = request.form.get('title',)
       kata_latin = request.form.get('kata_latin', '')
       # kata_latin = request.form['kata_latin']
       hasil_rulebase = translate_kata(kata_latin)
@@ -93,23 +97,26 @@ def translate():
       suggest = hasil_rulebase[1]
 
       # Query history berdasarkan kata_latin
-      existing_history = History.query.filter_by(teks_hasil=hasil).first()
+      existing_history = History.query.filter_by(judul=title).first()
 
       if existing_history:
             # Jika data dengan kata_latin yang sama sudah ada, update teks_hasil
+            existing_history.judul = title
+            existing_history.teks_asli = kata_latin
             existing_history.teks_hasil = hasil
       else:
             # Jika tidak ada data yang cocok, tambahkan data baru
-            new_history = History(teks_asli=kata_latin, teks_hasil=hasil)
+            new_history = History(judul=title, teks_asli=kata_latin, teks_hasil=hasil)
             db.session.add(new_history)
 
       db.session.commit()  # Commit perubahan ke dalam database
 
       # Store the translated text in a session variable
       session['result_text'] = hasil
+      session['title'] = title
       
       # return hasil
-      return render_template('index.html', hasil=hasil, kata_latin = kata_latin, suggest=suggest)  # Ganti 'hasil.html' dengan template yang sesuai
+      return render_template('index.html', hasil=hasil, kata_latin = kata_latin, suggest=suggest, judul=title)  # Ganti 'hasil.html' dengan template yang sesuai
       # return render_template('index.html', hasil=hasil)  # Ganti 'hasil.html' dengan template yang sesuai
 
       # 1. tokenizing kata_latin

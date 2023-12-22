@@ -151,12 +151,28 @@ class Rulebase:
         # ===***=== end case a ===***===  
 
         # ===***=== case b ===***=== 
-        elif karakter == "b":
+        elif karakter == 'b':
             if x == 0:
                 self.HasilTrans[x] = 'b'
                 self.IndexTrans = self.IndexTrans + 1
                 self.gantungan = 0
                 self.cecek = 0
+                # my edit = ba kembang
+                if teks[x + 1] == 'h':
+                    self.HasilTrans[x] = 'v'
+                    self.IndexTrans = self.IndexTrans + 1
+                    self.gantungan = 0
+                    self.cecek = 0
+                    self.katakhusus = 0
+                # end my edit
+            # my edit = ba kembang
+            elif teks[x + 1] == 'h':
+                self.HasilTrans[x] = 'v'
+                self.IndexTrans = self.IndexTrans + 2
+                self.gantungan = 0
+                self.cecek = 0
+                self.katakhusus = 0
+            # end my edit
 
             else:
                 if teks[x - 1] == ' ':
@@ -212,7 +228,7 @@ class Rulebase:
                     self.IndexTrans = self.IndexTrans + 1
                     self.gantungan = 0
                     self.cecek = 0
-                
+
                 elif (teks[x - 1] == 'ī' or teks[x - 1] == 'ê' or teks[x - 1] == 'ú' or teks[x - 1] == 'ô' or teks[x - 1] == 'ā' or teks[x - 1] == 'â' or teks[x - 1] == 'ã' or teks[x - 1] == 'ä' or teks[x - 1] == 'ì' or teks[x - 1] == 'µ' or teks[x - 1] == 'a' or teks[x - 1] == 'i' or teks[x - 1] == 'u' or teks[x - 1] == 'e' or teks[x - 1] == 'o' or teks[x - 1] == 'é' or teks[x - 1] == 'h' or self.cecek == 1):
                     self.HasilTrans[self.IndexTrans] = 'b'
                     self.IndexTrans = self.IndexTrans + 1
@@ -344,13 +360,19 @@ class Rulebase:
                     self.gantungan = 0
                     self.cecek = 0
                     self.katakhusus = 1
+                # my edit = da madu
+                elif teks[x + 1] == 'h':
+                    self.HasilTrans[self.IndexTrans] = 'a'
+                    self.IndexTrans = self.IndexTrans + 1
+                    self.gantungan = 0
+                    self.cecek = 0
+                # end my edit
                 else:
                     self.HasilTrans[x] = 'd'
                     self.IndexTrans = self.IndexTrans + 1
                     self.gantungan = 0
                     self.cecek = 0
-
-            # tidak ada huruf di depannya 527
+            # tidak ada huruf di depannya
             else:
                 # depan spasi
                 if teks[x - 1] == ' ':
@@ -423,14 +445,14 @@ class Rulebase:
                 # end depan spasi 630
 
                 # 632
-                # my edit
+                # my edit = da madu
                 elif (teks[x + 1] == 'h'):
                     self.HasilTrans[self.IndexTrans] = 'a'
                     self.IndexTrans = self.IndexTrans + 2
                     self.gantungan = 1
                     self.cecek = 0
                     self.katakhusus = 0
-                # end may edit
+                # end my edit
                 elif (teks[x - 1] == 'ī' or teks[x - 1] == 'ê' or teks[x - 1] == 'ú' or teks[x - 1] == 'ô' or teks[x - 1] == 'ā' or teks[x - 1] == 'â' or teks[x - 1] == 'ã' or teks[x - 1] == 'ä' or teks[x - 1] == 'ì' or teks[x - 1] == 'µ' or teks[x - 1] == 'a' or teks[x - 1] == 'i' or teks[x - 1] == 'u' or teks[x - 1] == 'e' or teks[x - 1] == 'o' or teks[x - 1] == 'é' or teks[x - 1] == 'h' or self.cecek == 1):
                     # kata khusus 636
                     if teks[x + 1] == 'ÿ':
@@ -753,7 +775,7 @@ class Rulebase:
                             self.gantungan = 0
                             self.cecek = 0
                     #1122
-                    elif (teks[x -2] == '.' or teks[x -2] == ',' or teks[x - 2] == ':'):
+                    elif (teks[x - 2] == '.' or teks[x - 2] == ',' or teks[x - 2] == ':'):
                         self.HasilTrans[self.IndexTrans] = 'h)'
                         self.IndexTrans = self.IndexTrans + 1
                         self.gantungan = 0
@@ -1329,17 +1351,19 @@ class Rulebase:
         # ===***=== case l ===***=== 
         elif karakter == 'l':
             if x == 0:
-                if teks[x + 1] == 'é':
-                    self.HasilTrans[self.IndexTrans] = 'ò'
-                    self.IndexTrans = self.IndexTrans + 2
-                    self.gantungan = 0
-                    self.cecek = 0
                 if teks[x + 1] == 'ÿ':
                     self.HasilTrans[self.IndexTrans] = 'L'
                     self.IndexTrans = self.IndexTrans + 1
                     self.gantungan = 0
                     self.cecek = 0
                     self.katakhusus = 1
+                # my edit = le lenga
+                if teks[x + 1] == 'é':
+                    self.HasilTrans[x] = 'ò'
+                    self.IndexTrans = self.IndexTrans + 2
+                    self.gantungan = 1
+                    self.cecek = 0
+                # end my edit
                 else:
                     self.HasilTrans[self.IndexTrans] = 'l'
                     self.IndexTrans = self.IndexTrans + 1
@@ -2389,6 +2413,13 @@ class Rulebase:
                     self.IndexTrans = self.IndexTrans + 1
                     self.gantungan = 0
                     self.cecek = 0
+            # my edit = gempelan re repa
+            elif teks[x - 1] == 'k' or teks[x - 1] == 'm' or teks[x - 1] == 'w':
+                    self.HasilTrans[x] = '×'
+                    self.IndexTrans = self.IndexTrans + 1
+                    self.gantungan = 1
+                    self.cecek = 0
+            # end my edit
             
             elif (x != len(self.HasilTrans) - 1):
                 if teks[x - 1] == ' ':
@@ -2553,6 +2584,13 @@ class Rulebase:
                     self.gantungan = 1
                     self.cecek = 0
                     self.katakhusus = 1
+                # my edit = ta tawa
+                elif teks[x + 1] == 'h':
+                    self.HasilTrans[self.IndexTrans] = 'q'
+                    self.IndexTrans = self.IndexTrans + 1
+                    self.gantungan = 0
+                    self.cecek = 0
+                # end my edit
                 else:
                     self.HasilTrans[self.IndexTrans] = 't'
                     self.IndexTrans = self.IndexTrans + 1
@@ -2572,7 +2610,6 @@ class Rulebase:
                             self.IndexTrans = self.IndexTrans + 1
                             self.gantungan = 0
                             self.cecek = 0
-
                     elif teks[x - 2] == 'r':
                         if teks[x + 1] == 'ÿ':
                             self.HasilTrans[self.IndexTrans] = 'T'
@@ -2630,6 +2667,13 @@ class Rulebase:
                             self.IndexTrans = self.IndexTrans + 1
                             self.gantungan = 0
                             self.cecek = 0
+                # my edit = ta tawa
+                elif teks[x + 1] == 'h':
+                    self.HasilTrans[self.IndexTrans] = 'q'
+                    self.IndexTrans = self.IndexTrans + 1
+                    self.gantungan = 0
+                    self.cecek = 0
+                # end my edit
 
                 # 4326
                 elif (teks[x - 1] == 'ī' or teks[x - 1] == 'ê' or teks[x - 1] == 'ú' or teks[x - 1] == 'ô' or teks[x - 1] == 'ā' or teks[x - 1] == 'â' or teks[x - 1] == 'ã' or teks[x - 1] == 'ä' or teks[x - 1] == 'ì' or teks[x - 1] == 'µ' or teks[x - 1] == 'a' or teks[x - 1] == 'i' or teks[x - 1] == 'u' or teks[x - 1] == 'e' or teks[x - 1] == 'o' or teks[x - 1] == 'é' or teks[x - 1] == 'h' or self.cecek == 1):
@@ -2911,6 +2955,11 @@ class Rulebase:
                     self.IndexTrans = self.IndexTrans + 2
                     self.gantungan = 0
                     self.cecek = 0
+                # elif teks[x + 1] == 'y':
+                #     self.HasilTrans[self.IndexTrans] = 'yê'
+                #     self.IndexTrans = self.IndexTrans + 2
+                #     self.gantungan = 0
+                #     self.cecek = 0
                 else:
                     self.HasilTrans[self.IndexTrans] = 'y'
                     self.IndexTrans = self.IndexTrans + 1
@@ -3221,7 +3270,7 @@ class Rulebase:
         # case karakter khusus
         elif karakter == 'ā':
             if x == 0:
-                self.HasilTrans[x] = 'õ'
+                self.HasilTrans[x] = '*'
                 self.IndexTrans = self.IndexTrans + 1
                 self.gantungan = 1
                 self.cecek = 0
@@ -3532,6 +3581,39 @@ class Rulebase:
                     self.gantungan = 0
                     self.cecek = 0
         elif karakter == 'ṣ':
+            if x == 0:
+                self.HasilTrans[x] = '['
+                self.IndexTrans = self.IndexTrans + 1
+                self.gantungan = 1
+                self.cecek = 0
+            else:
+                if teks[x - 1] == ' ':
+                    if (teks[x - 2] == 'ī') or (teks[x - 2] == 'ê') or (teks[x - 2] == 'ú') or (teks[x - 2] == 'ô') or (teks[x - 2] == 'ā') or (teks[x - 2] == 'â') or (teks[x - 2] == 'ã') or (teks[x - 2] == 'ä') or (teks[x - 2] == 'ì') or (teks[x - 2] == 'µ') or (teks[x - 2] == 'a') or (teks[x - 2] == 'i') or (teks[x - 2] == 'u') or (teks[x - 2] == 'e') or (teks[x - 2] == 'o') or (teks[x - 2] == 'é') or (teks[x - 2] == 'h') or (teks[x - 2] == 'r') or (self.cecek == 1):
+                        self.HasilTrans[x] = '['
+                        self.IndexTrans = self.IndexTrans + 1
+                        self.gantungan = 0
+                        self.cecek = 0
+                    elif (teks[x - 2] == ',') or (teks[x - 2] == '.') or (teks[x - 2] == ':'):
+                        self.HasilTrans[x] = '['
+                        self.IndexTrans = self.IndexTrans + 1
+                        self.gantungan = 0
+                        self.cecek = 0
+                    else:
+                        self.HasilTrans[x] = '/['
+                        self.IndexTrans = self.IndexTrans + 1
+                        self.gantungan = 1
+                        self.cecek = 0
+                elif (teks[x - 1] == 'ī') or (teks[x - 1] == 'ê') or (teks[x - 1] == 'ú') or (teks[x - 1] == 'ô') or (teks[x - 1] == 'ā') or (teks[x - 1] == 'â') or (teks[x - 1] == 'ã') or (teks[x - 1] == 'ä') or (teks[x - 1] == 'ì') or (teks[x - 1] == 'µ') or (teks[x - 1] == 'a') or (teks[x - 1] == 'u') or (teks[x - 1] == 'e') or (teks[x - 1] == 'o') or (teks[x - 1] == 'é') or (self.cecek == 1):
+                    self.HasilTrans[x] = '['
+                    self.IndexTrans = self.IndexTrans + 1
+                    self.gantungan = 0
+                    self.cecek = 0
+                else:
+                    self.HasilTrans[x] = '['
+                    self.IndexTrans = self.IndexTrans + 1
+                    self.gantungan = 0
+                    self.cecek = 0
+        elif karakter == 'ş':
             if x == 0:
                 self.HasilTrans[x] = '['
                 self.IndexTrans = self.IndexTrans + 1
@@ -4075,6 +4157,67 @@ class Rulebase:
                     self.gantungan = 0
                     self.cecek = 0
                     self.katakhusus = 1
+        # my edit = da madu [dha]
+        elif karakter == 'ḍ':
+            if x == 0:
+                self.HasilTrans[x] = 'a'
+                self.IndexTrans = self.IndexTrans + 1
+                self.gantungan = 0
+                self.cecek = 0
+            else:
+                self.HasilTrans[x] = 'a'
+                self.IndexTrans = self.IndexTrans + 1
+                self.gantungan = 0
+                self.cecek = 0
+        # le lenga
+        elif karakter == 'ḷ':
+            if x == 0:
+                self.HasilTrans[x] = 'ò'
+                self.IndexTrans = self.IndexTrans + 1
+                self.gantungan = 1
+                self.cecek = 0
+            else:
+                self.HasilTrans[x] = 'ò'
+                self.IndexTrans = self.IndexTrans + 1
+                self.gantungan = 1
+                self.cecek = 0
+        # lelenga tedong
+        elif karakter == 'ḹ':
+            if x == 0:
+                self.HasilTrans[self.IndexTrans] = 'òo'
+                self.IndexTrans = self.IndexTrans + 2
+                self.gantungan = 1
+                self.cecek = 0
+            else:
+                self.HasilTrans[self.IndexTrans] = 'òo'
+                self.IndexTrans = self.IndexTrans + 2
+                self.gantungan = 1
+                self.cecek = 0
+        # ulu candra
+        elif karakter == 'ṁ':
+            if x == 0:
+                self.HasilTrans[self.IndexTrans] = 'š'
+                self.IndexTrans = self.IndexTrans + 1
+                self.gantungan = 0
+                self.cecek = 0
+            else:
+                self.HasilTrans[self.IndexTrans] = 'š'
+                self.IndexTrans = self.IndexTrans + 1
+                self.gantungan = 0
+                self.cecek = 0
+        # ulu sari
+        elif karakter == 'ṃ':
+            if x == 0:
+                self.HasilTrans[self.IndexTrans] = 'ž'
+                self.IndexTrans = self.IndexTrans + 1
+                self.gantungan = 1
+                self.cecek = 0
+            else:
+                self.HasilTrans[self.IndexTrans] = 'ž'
+                self.IndexTrans = self.IndexTrans + 1
+                self.gantungan = 1
+                self.cecek = 0
+        # end edit
         # end case karakter khusus
 
         # case huruf tak terdefinisi pada aksara bali

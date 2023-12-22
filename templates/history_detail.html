@@ -7,6 +7,29 @@
 
 <!-- Block Body -->
 {% block body %}
+<style>
+    .suggestList {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .title_input {
+        width: 100%;
+        height: 50px;
+        border: 0.5px solid #1a1a1a;
+        border-radius: 5px;
+        padding: 0 10px;
+        margin-bottom: 1rem;
+    }
+
+    .title_input:focus {
+        outline: none;
+    }
+
+    .btn_translate {
+        background-color: gray;
+    }
+</style>
 <section class="home_container">
     <!-- background img -->
     <div class="bg_image">
@@ -20,13 +43,15 @@
         <div class="home_form_wrap">
             <form action="/translate" method="post" class="main_form">
                 <div class="main_field_group">
+                    <!-- title input -->
+                    <div class="title_input" style="display: flex; align-items: center;" disabled>{{ history.judul }}</div>
                     <div class="text_input_field main_field">
-                        <textarea class="latin_input field_box" name="kata_latin" placeholder="Masukan teks latin" id="latin_input" required>{{ history.teks_asli }}</textarea>
+                        <textarea class="latin_input field_box" name="kata_latin" placeholder="Masukan teks latin" id="latin_input" disabled required>{{ history.teks_asli }}</textarea>
                     </div>
 
                     <!-- button -->
                     <div class="main_form_btn_group">
-                        <button class="btn_translate" type="submit" disabled>Translate
+                        <button class="btn_translate" type="submit" disabled aria-disabled="true">Translate
                             <img src="/static/svg/translate.svg" alt="">
                         </button>
 

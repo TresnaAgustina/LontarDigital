@@ -12,3 +12,7 @@
 @import url("./components/navbar.css");
 @import url("./components/single_list.css");
 @import url("./components/flash_card.css");
+@import url("./components/suggestion_dialog.css");
+
+/* bootstrap */
+/* @import url("./bootstrap/bootstrap.min.css"); */

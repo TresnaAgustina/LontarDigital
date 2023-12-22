@@ -10,6 +10,8 @@ from controllers.main_controller import main_controller
 from controllers.exportPdf_controller import export_pdf_blueprint
 from controllers.exportLontar_controller import export_lontar_blueprint
 from controllers.SpellCheckController import spell_check_blueprint
+from controllers.exportLontarDocx_controller import export_lontar_docx_blueprint
+from controllers.search_controller import search_blueprint
 
 # models
 import models.user
@@ -37,6 +39,8 @@ app.register_blueprint(main_controller)
 app.register_blueprint(export_pdf_blueprint)
 app.register_blueprint(export_lontar_blueprint)
 app.register_blueprint(spell_check_blueprint)
+app.register_blueprint(export_lontar_docx_blueprint)
+app.register_blueprint(search_blueprint)
 
 # inisialisasi bcrypt
 bcrypt = Bcrypt(app)
