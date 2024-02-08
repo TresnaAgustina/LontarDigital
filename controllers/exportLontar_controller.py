@@ -23,12 +23,12 @@ def createLontar(text):
     style.fontSize = 20
     style.fontName = "BaliSimbar"
     # margin left
-    style.leftIndent = 64
+    style.leftIndent = 50
     # margin right
-    style.rightIndent = 64
+    style.rightIndent = 50
 
     # File background (watermark) image
-    file_background = "static/svg/LontarFix.jpg"
+    file_background = "static/svg/LontarOneLine.png"
 
     # Add the resized background image to each page using PageTemplate
     template = PageTemplate(

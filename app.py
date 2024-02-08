@@ -11,6 +11,8 @@ from controllers.exportPdf_controller import export_pdf_blueprint
 from controllers.exportLontar_controller import export_lontar_blueprint
 from controllers.SpellCheckController import spell_check_blueprint
 from controllers.exportLontarDocx_controller import export_lontar_docx_blueprint
+from controllers.exportLontarOneLine_controller import export_lontar_one_line_blueprint
+from controllers.historyDownloadController import history_download_controller
 from controllers.search_controller import search_blueprint
 
 # models
@@ -40,7 +42,9 @@ app.register_blueprint(export_pdf_blueprint)
 app.register_blueprint(export_lontar_blueprint)
 app.register_blueprint(spell_check_blueprint)
 app.register_blueprint(export_lontar_docx_blueprint)
+app.register_blueprint(export_lontar_one_line_blueprint)
 app.register_blueprint(search_blueprint)
+app.register_blueprint(history_download_controller)
 
 # inisialisasi bcrypt
 bcrypt = Bcrypt(app)

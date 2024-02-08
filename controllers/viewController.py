@@ -45,31 +45,26 @@ def wordAdd():
             arti = request.form['arti_kata']
             format_aksara = request.form['bentuk_aksara']
 
-            # check if word already exist
-            existing_word = KataKhusus.query.filter_by(kata=kata).first()
-            if existing_word:
-                  return render_template('add_word.html', error='Kata sudah ada.')
-
             # create new word
             new_word = KataKhusus(kata=kata, arti=arti, format_aksara=format_aksara)
             
             # save word to database
             db.session.add(new_word)
             db.session.commit()
-            return render_template('add_word.html', success='Kata berhasil ditambahkan.')
+            return redirect(url_for('viewController.wordList'))
       else:
             return render_template('add_word.html')
 
 
 # ===== Word Edit Routes =====
-@viewController.route('/edit/<int:id>', methods=['GET', 'POST'])
+@viewController.route('/update/<int:id>', methods=['GET', 'POST'])
 @login_required
 def wordEdit(id):
       # check request method
       if request.method == 'POST':
             # get word from database
             word = KataKhusus.query.filter_by(id=id).first()
-            
+
             # update word
             word.kata = request.form['kata_latin']
             word.arti = request.form['arti_kata']
@@ -78,7 +73,7 @@ def wordEdit(id):
             
             # save word to database
             db.session.commit()
-            return render_template('edit_word.html', success='Kata berhasil diubah.', words=word)
+            return redirect(url_for('viewController.wordList'))
       else:
             # get word from database
             word = KataKhusus.query.filter_by(id=id).first()

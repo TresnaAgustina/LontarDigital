@@ -39,8 +39,8 @@ def test():
     section = doc.sections[0]
 
     # Set margin halaman menjadi 0 di seluruh sisi
-    section.left_margin = Inches(0.9)
-    section.right_margin = Inches(0.9)
+    section.left_margin = Inches(1)
+    section.right_margin = Inches(1)
     section.top_margin = Inches(0)
     section.bottom_margin = Inches(0)
 
@@ -50,6 +50,8 @@ def test():
     content_style.font.size = Pt(29)
     # content_style.font.name = 'poppins'  # Ganti dengan jenis font yang diinginkan
     content_style.font.name = 'bali simbar'  # Ganti dengan jenis font yang diinginkan
+    # add line spacing 1.15
+    content_style.paragraph_format.line_spacing = 1.15
 
     # Konten teks
     paragraphs = text_result.split('\n')  # Split teks menjadi paragraf
@@ -88,28 +90,13 @@ def test():
         newArray.append(arrayTeks[7])
 
         # print(newArray)
-
-        # # Jika sudah ada 4 baris teks, tambahkan halaman baru
-        # if len(doc.paragraphs) % 4 == 0:
-        #     doc.add_page_break()
+        # add space at the end of every array items
+        for i in range(len(newArray)):
+            newArray[i] = newArray[i] + ' '
 
         # paragraph = doc.add_paragraph(paragraph_text.strip())
         paragraph = doc.add_paragraph(newArray)
         paragraph.style = content_style
-
-        
-        # # Loop through newArray and add paragraphs to the document
-        # for item in newArray:
-        #     # Jika sudah ada 4 baris teks, tambahkan halaman baru
-        #     if len(doc.paragraphs) % 4 == 0:
-        #         doc.add_page_break()
-
-        #     # Add a paragraph to the document
-        #     paragraph = doc.add_paragraph(item.strip())
-        #     paragraph.style = content_style
-
-        #     # Add a line of underscores at the end of the paragraph
-        #     paragraph.add_run("_")
 
     # Simpan dokumen ke file
     doc.save(judul+':'+current_date+'.docx')

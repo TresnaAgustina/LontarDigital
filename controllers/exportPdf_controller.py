@@ -6,6 +6,7 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
+
 export_pdf_blueprint = Blueprint('export_pdf', __name__)
 
 # Fungsi untuk menghasilkan file PDF
@@ -16,7 +17,7 @@ def create_pdf(str):
     # Format the time
     current_date = now.strftime("%d-%m-%Y")
     # Buat dokumen PDF
-    doc = SimpleDocTemplate(title+"_"+current_date+".pdf", pagesize=letter)
+    doc = SimpleDocTemplate(title+" "+current_date+".pdf", pagesize=letter)
     elements = []
     # Mendefinisikan jenis font "Bali Simbar"
     pdfmetrics.registerFont(TTFont("BaliSimbar", "static/font/balisdn.ttf"))
@@ -58,4 +59,4 @@ def export_pdf():
 
     create_pdf(teks_result)
 
-    return send_file(title+"_"+current_date+".pdf", as_attachment=True)
+    return send_file(title+" "+current_date+".pdf", as_attachment=True)

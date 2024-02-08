@@ -51,25 +51,25 @@
 
                     <!-- button -->
                     <div class="main_form_btn_group">
-                        <button class="btn_translate" type="submit" disabled aria-disabled="true">Translate
+                        <button class="btn_translate" disabled aria-disabled="true">Translate
                             <img src="/static/svg/translate.svg" alt="">
                         </button>
 
                         <div class="main_btn_group">
-                            <!-- <div class="btn_copy main_action_btn" onclick="copy()">
-                                                <img src="/static/svg/copy.svg" alt="Copy Icon" class="copy_icon btn_icon">
-                                          </div> -->
+                            <!-- download popup -->
                             <div class="download_popup" id="download_popup">
                                 <div class="grup">
-                                    <a href="/pdf/{{ history.id }}" class="pdfDownload">Format Buku</a>
-                                    <a href="/lontar/{{ history.id }}" class="pdfDownload">Format Lontar</a>
+                                    <a href="/save_book/{{ history.id }}" class="pdfDownload">Format Buku</a>
+                                    <a href="/save_lontar_2col/{{ history.id }}" class="pdfDownload">Format Lontar (.docx)</a>
+                                    <a href="/save_lontar_1line/{{ history.id }}" class="pdfDownload">Lontar (Normal)</a>
                                 </div>
                             </div>
 
-                            <div class="btn_download main_action_btn" onclick="donwload()">
-                                <img src="/static/svg/download.svg" alt="Download Icon" class="download_icon btn_icon">
-                            </div>
-
+                            <!-- download btn -->
+                            <button type="button" class="btn_downloads" onclick="donwload()">Download<img src="/static/svg/download.svg"></button>
+                            <!-- <div class="btn_download main_action_btn" onclick="donwload()">
+                                  <img src="/static/svg/download.svg" alt="Download Icon" class="download_icon btn_icon">
+                            </div> -->
                         </div>
                     </div>
 
@@ -88,4 +88,24 @@
     </div>
 
 </section>
+<!-- <script>
+    async function bookFormat() {
+        // Mendapatkan ID dari history
+        const historyId = '{{ history.id }}';
+
+        console.log(historyId);
+
+        // Mengirim permintaan ke sisi server
+        const response = await fetch(`/pdf_format/${historyId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        // // // Handle respons dari sisi server jika diperlukan
+        // const result = await response.json();
+        // console.log(result); // Tampilkan hasil respons, sesuaikan sesuai kebutuhan
+    }
+</script> -->
 {% endblock %}

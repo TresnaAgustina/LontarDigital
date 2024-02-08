@@ -13,9 +13,13 @@
       <!-- navbar -->
       {% include 'navbar.html' %}
 
+
+
       <!-- list page - header -->
       <div class="header_wrap">
             <h1 class="title">Daftar Kata Khusus</h1>
+            <!-- if success message, show -->
+            <h1>{{ success }}</h1>
 
             <!-- right content -->
             <div class="header_content_group">
@@ -36,14 +40,15 @@
                   <!-- single content -->
                   <div class="single_list">
                         <div class="list_data_group">
-                              <p>{{ word.id }}</p>
+                              <!-- buat nomor index dari data yang ada -->
+                              <p>{{ words.page * words.per_page - words.per_page + loop.index }}</p>
                               <p>{{ word.kata }}</p>
                               <p>{{ word.arti }}</p>
                               <p>{{ word.format_aksara }}</p>
                         </div>
 
                         <div class="list_action_group">
-                              <a href="/edit/{{ word.id }}" class="edit_btn"><img src="/static/svg/edit.svg" alt="edit logo"></a>
+                              <a href="/update/{{ word.id }}" class="edit_btn"><img src="/static/svg/edit.svg" alt="edit logo"></a>
                               <a href="/delete/{{ word.id }}" class="delete_btn"><img src="/static/svg/trash.svg" alt="trash logo"></a>
                         </div>
                   </div>
